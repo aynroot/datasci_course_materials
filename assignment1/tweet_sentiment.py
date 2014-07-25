@@ -19,7 +19,7 @@ def get_words_sentiments(filename):
 def get_tweet_sentiment(tweet, sentiments):
     text = tweet.get('text', None)
     if text:
-        words = [word.lower().strip(string.punctuation) for word in text.split()]                
+        words = [word.lower().strip(string.punctuation) for word in text.split()]
         result = sum([sentiments.get(word, 0) for word in words])
         return result
     return 0
@@ -29,13 +29,13 @@ def main():
     words_sentiments_filename = sys.argv[1]
     tweet_filename = sys.argv[2]
 
-    words_sentiments = get_words_sentiments(words_sentiments_filename)        
+    words_sentiments = get_words_sentiments(words_sentiments_filename)
     with open(tweet_filename) as f:
         for line in f:
-            tweet = json.loads(line)            
+            tweet = json.loads(line)
             ts = get_tweet_sentiment(tweet, words_sentiments)
             print ts
 
-    
+
 if __name__ == '__main__':
     main()
